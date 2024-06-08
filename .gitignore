@@ -1,0 +1,7 @@
+chrome/*
+env/*
+__pycache__/app.cpython-310.pyc
+__pycache__/funciones.cpython-310.pyc
+__pycache__/init_db.cpython-310.pyc
+__pycache__/run_ml.cpython-310.pyc
+.DS_Store
