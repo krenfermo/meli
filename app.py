@@ -1,4 +1,4 @@
-from flask import Flask, render_template,request,jsonify
+from flask import Flask, render_template,request,jsonify,session
 from funciones import creaToken
 from os.path import join, dirname
 from dotenv import load_dotenv
@@ -12,7 +12,7 @@ import nest_asyncio
 import json
 import ast
 
-
+import uvicorn
 
 nest_asyncio.apply()
 
@@ -28,6 +28,7 @@ CLIENT_SECRET=os.environ.get("CLIENT_SECRET")
 from flask_cors import CORS, cross_origin
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'vnkdjnfjknfl1232#'
+app.config['JSONIFY_PRETTYPRINT_REGULAR'] = True
 socketio = SocketIO(app)
 
 
@@ -36,7 +37,7 @@ CORS(app, support_credentials=True)
 
 @app.route('/')
 def sessions():
-    return render_template('session.html')
+    return {"app":"run"}
 
 @app.route('/autoriza')
 def index():
@@ -54,7 +55,9 @@ async def respond():
     
     if token:
         print("token CREADO")
-    
+        print(token)
+        session['user_id']=session['token']["access_token"].split('-')[-1]
+        
     return render_template('callback.html')
 
 
@@ -62,24 +65,27 @@ async def respond():
 @app.route('/me', methods=['GET'])
 #@cross_origin(supports_credentials=True)
 async def me():
-    token=get_last_token('40137874')
-    reaultado=get_me(token)
     
-    return reaultado
+    token=get_last_token(session['user_id'])
+    reaultado=get_me(token)
+    #if 'user_id' not in session.keys():
+        
+    return jsonify(reaultado)
+
 
 
 @app.route('/info_user', methods=['GET'])
 #@cross_origin(supports_credentials=True)
 async def info_user():
-    token=get_last_token('40137874')
+    token=get_last_token(session['user_id'])
     reaultado=get_info_users(token)
     
-    return reaultado
+    return jsonify(reaultado)
 
 @app.route('/orders_user', methods=['GET'])
 #@cross_origin(supports_credentials=True)
 async def orders_user():
-    token=get_last_token('40137874')
+    token=get_last_token(session['user_id'])
     reaultado=get_orders_users(token)
     
     return reaultado
@@ -87,4 +93,4 @@ async def orders_user():
  
 
 if __name__ == "__main__":
-    app.run(debug=True,host='0.0.0.0',port=8000,ssl_context='adhoc')
+    uvicorn.run("app:app", host="0.0.0.0", port=8000)

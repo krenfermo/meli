@@ -16,7 +16,7 @@ import ast
 from run_ml import runner as runml
 import json
 from init_db import get_db_connection
-    
+from flask import session   
     
 dotenv_path = join(dirname(__file__), '.env')
 load_dotenv(dotenv_path)
@@ -160,7 +160,10 @@ def creaToken(codigo):
     #codigo=get_code()
  
     token = client.exchange_code(re_url, codigo)
- 
+    print(token)
+    
+    session['token']=ast.literal_eval(str(token))
+    
     #crea_json('token_{}.json'.format(token["user_id"]),token)
     conn=get_db_connection()
     cur = conn.cursor()

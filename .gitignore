@@ -5,3 +5,14 @@ __pycache__/funciones.cpython-310.pyc
 __pycache__/init_db.cpython-310.pyc
 __pycache__/run_ml.cpython-310.pyc
 .DS_Store
+.env
+ml.command
+__pycache__/app.cpython-312.pyc
+__pycache__/funciones.cpython-312.pyc
+bitacoras/access.log
+bitacoras/pid
+bitacoras/error.log
+__pycache__/run_ml.cpython-312.pyc
+__pycache__/init_db.cpython-312.pyc
+__pycache__/guniconf.cpython-312.pyc
+.env
