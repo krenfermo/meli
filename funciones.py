@@ -98,7 +98,9 @@ def get_info_users(token):
 
 def update_orders_users(token):
     client.set_token(token)
+    print("pasa set token")
     usua=get_me(token)
+    print("pasa get_me")
     
     resulultado=client.update_orders(usua["id"],None)
     resultados=[]
@@ -331,11 +333,12 @@ def creaToken(codigo):
 
 def creaRefreshToken(user_id=None):
     #codigo=get_code()
+    print("VA A creaRefreshToken")
     token=get_last_token(user_id)
     token=client.refresh_token(token)
-    session['token']=ast.literal_eval(str(token))
-    
- 
+    #session['token']=ast.literal_eval(str(token))
+        
+     
     conn=get_db_connection()
     cur = conn.cursor()
     cur.execute('INSERT INTO tokens (user_id, json_data)'

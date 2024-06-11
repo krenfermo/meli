@@ -44,7 +44,7 @@ def orders_updateJOB(user_id):
     #creaRefreshToken(token)
     #exit()
     
-    #token="{'access_token': 'APP_USR-3344062182119869-061012-eea1565fa06a1ea8133e6693250a7498-1118811075', 'token_type': 'Bearer', 'expires_in': 21600, 'scope': 'offline_access read write', 'user_id': 1118811075, 'refresh_token': 'TG-66672f4735dfde0001f1e5ed-1118811075', 'expires_at': 1718059943.7572572}"
+    
     reaultado=update_orders_users(token)
     
  
@@ -54,7 +54,7 @@ scheduler.add_job(
    orders_updateJOB, 'interval',args=['1118811075'], minutes=30
 )
 scheduler.add_job(
-   creaRefreshToken, 'interval',args=['1118811075'], hours=3
+   creaRefreshToken, 'interval',args=['1118811075'], minutes=60
 )
 
 
@@ -117,7 +117,7 @@ async def orders_user():
     #creaRefreshToken('1118811075')
     #exit()
     
-    #token="{'access_token': 'APP_USR-3344062182119869-061012-eea1565fa06a1ea8133e6693250a7498-1118811075', 'token_type': 'Bearer', 'expires_in': 21600, 'scope': 'offline_access read write', 'user_id': 1118811075, 'refresh_token': 'TG-66672f4735dfde0001f1e5ed-1118811075', 'expires_at': 1718059943.7572572}"
+    
     reaultado=get_orders_users(token)
     
     
@@ -130,10 +130,11 @@ async def orders_user():
 #@cross_origin(supports_credentials=True)
 async def orders_update():
     token=get_last_token('1118811075')
+    print(token)
     #creaRefreshToken(token)
     #exit()
     
-    #token="{'access_token': 'APP_USR-3344062182119869-061012-eea1565fa06a1ea8133e6693250a7498-1118811075', 'token_type': 'Bearer', 'expires_in': 21600, 'scope': 'offline_access read write', 'user_id': 1118811075, 'refresh_token': 'TG-66672f4735dfde0001f1e5ed-1118811075', 'expires_at': 1718059943.7572572}"
+    
     reaultado=update_orders_users(token)
 
             
