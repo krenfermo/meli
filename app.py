@@ -1,5 +1,5 @@
 from flask import Flask, render_template,request,jsonify,session
-from funciones import creaToken
+from funciones import creaToken,creaRefreshToken
 from os.path import join, dirname
 from dotenv import load_dotenv
 from flask_socketio import SocketIO
@@ -7,10 +7,13 @@ import os
 import time
 from asgiref.sync import sync_to_async
 import asyncio
-from funciones import get_me,get_last_token,get_info_users,get_orders_users
+from funciones import get_me,get_last_token,get_info_users,get_orders_users,update_orders_users
 import nest_asyncio
 import json
 import ast
+from apscheduler.schedulers.background import BackgroundScheduler
+from apscheduler.triggers.cron import CronTrigger
+
 
 import uvicorn
 
@@ -30,11 +33,36 @@ app = Flask(__name__)
 app.config['SECRET_KEY'] = 'vnkdjnfjknfl1232#'
 app.config['JSONIFY_PRETTYPRINT_REGULAR'] = True
 socketio = SocketIO(app)
-
+scheduler = BackgroundScheduler()
 
 CORS(app, support_credentials=True)
 
 
+def orders_updateJOB(user_id):
+    print("ACTUALIZANDO")
+    token=get_last_token(user_id)
+    #creaRefreshToken(token)
+    #exit()
+    
+    #token="{'access_token': 'APP_USR-3344062182119869-061012-eea1565fa06a1ea8133e6693250a7498-1118811075', 'token_type': 'Bearer', 'expires_in': 21600, 'scope': 'offline_access read write', 'user_id': 1118811075, 'refresh_token': 'TG-66672f4735dfde0001f1e5ed-1118811075', 'expires_at': 1718059943.7572572}"
+    reaultado=update_orders_users(token)
+    
+ 
+ 
+    
+scheduler.add_job(
+   orders_updateJOB, 'interval',args=['1118811075'], minutes=30
+)
+scheduler.add_job(
+   creaRefreshToken, 'interval',args=['1118811075'], hours=3
+)
+
+
+# Start the scheduler
+scheduler.start()
+
+
+    
 @app.route('/')
 def sessions():
     return {"app":"run"}
@@ -77,7 +105,7 @@ async def me():
 @app.route('/info_user', methods=['GET'])
 #@cross_origin(supports_credentials=True)
 async def info_user():
-    token=get_last_token(session['user_id'])
+    token=get_last_token('1118811075')
     reaultado=get_info_users(token)
     
     return jsonify(reaultado)
@@ -85,12 +113,32 @@ async def info_user():
 @app.route('/orders_user', methods=['GET'])
 #@cross_origin(supports_credentials=True)
 async def orders_user():
-    token=get_last_token(session['user_id'])
+    token=get_last_token('1118811075')
+    #creaRefreshToken('1118811075')
+    #exit()
+    
+    #token="{'access_token': 'APP_USR-3344062182119869-061012-eea1565fa06a1ea8133e6693250a7498-1118811075', 'token_type': 'Bearer', 'expires_in': 21600, 'scope': 'offline_access read write', 'user_id': 1118811075, 'refresh_token': 'TG-66672f4735dfde0001f1e5ed-1118811075', 'expires_at': 1718059943.7572572}"
     reaultado=get_orders_users(token)
     
+    
+            
     return reaultado
 
  
 
+@app.route('/update_orders', methods=['GET'])
+#@cross_origin(supports_credentials=True)
+async def orders_update():
+    token=get_last_token('1118811075')
+    #creaRefreshToken(token)
+    #exit()
+    
+    #token="{'access_token': 'APP_USR-3344062182119869-061012-eea1565fa06a1ea8133e6693250a7498-1118811075', 'token_type': 'Bearer', 'expires_in': 21600, 'scope': 'offline_access read write', 'user_id': 1118811075, 'refresh_token': 'TG-66672f4735dfde0001f1e5ed-1118811075', 'expires_at': 1718059943.7572572}"
+    reaultado=update_orders_users(token)
+
+            
+    return reaultado
+
+
 if __name__ == "__main__":
-    uvicorn.run("app:app", host="0.0.0.0", port=8000)
+    app.run(debug=True,host="0.0.0.0", port=8000)

@@ -17,7 +17,17 @@ from run_ml import runner as runml
 import json
 from init_db import get_db_connection
 from flask import session   
-    
+from psycopg2.extras import execute_values
+
+from psycopg2.extensions import register_adapter, AsIs
+import json
+from psycopg2 import sql
+
+def adapt_dict(dict_var):
+    return AsIs("'" + json.dumps(dict_var) + "'")
+
+
+
 dotenv_path = join(dirname(__file__), '.env')
 load_dotenv(dotenv_path)
 
@@ -53,9 +63,9 @@ def get_code():
 
 def get_me(token):
     
-    print(token)
-    client.set_token(token)
     
+    client.set_token(token)
+    print("va me")
     usuario=client.me()
  
     try:
@@ -84,6 +94,36 @@ def get_info_users(token):
         pass     
     return usuario
 
+
+
+def update_orders_users(token):
+    client.set_token(token)
+    usua=get_me(token)
+    
+    resulultado=client.update_orders(usua["id"],None)
+    resultados=[]
+    try:
+            
+        for item in resulultado["results"]:
+                
+            
+            resultados.append(
+                {"user_id":str(usua["id"]),"json_data":str(item)})
+            
+    except KeyError:
+        print("keyerrp")
+        orders=client.update_orders(usua["id"],None)
+        #offset+=limit
+        for item in orders["results"]:
+            
+            resultados.append({"user_id":str(usua["id"]),"json_data":str(item)})
+   
+        
+    
+    result=insert_orders(resultados, 'orders')
+    
+    return result
+
 def get_orders_users(token):
     
     print(token)
@@ -91,15 +131,58 @@ def get_orders_users(token):
     usua=get_me(token)
      
 
-    usuario=client.get_orders(usua["id"])
+    usuario=client.get_orders(usua["id"],None)
+     
+    try:
+        total=usuario["paging"]["total"]
+    except:
+        total=0
+        
+    limit=50
+    offset=0
+    print("total=",total)
+    resultados=[]
+   
+    while offset < total:
+        #print(pag)
+        time.sleep(.3)
+        if offset==5450:
+            print("OFFSET",offset)
+            print("len resultado",len(resultados))
+            
+        orders=client.get_orders(usua["id"],offset)
+        try:
+            
+            for item in orders["results"]:
+                 
+                
+                
+                resultados.append(
+                    {"user_id":str(usua["id"]),"json_data":str(item)})
+                
+        except KeyError:
+            print("keyerrp")
+            orders=client.get_orders(usua["id"],offset)
+            #offset+=limit
+            for item in orders["results"]:
+                
+                resultados.append({"user_id":str(usua["id"]),"json_data":str(item)})
+        offset+=limit
+        
+    print(len(resultados))
+    #resultados = list(dict.fromkeys(resultados))
+    print("orders=",len(resultados))
     try:
         if usuario["status"]==401:
             print("entra REFRESH")
+            
             client.refresh_token(token)
-            usuario=client.get_orders(usua["id"])
+            usuario=client.get_orders(usua["id"],None)
     except:
-        pass    
-    return usuario
+        pass
+     
+    insert_orders(resultados,'orders')    
+    return resultados
 
 def get_last_token(userid):
     
@@ -156,6 +239,71 @@ def lee_json(filename,campo=None):
     # Closing file
     return False
 
+
+def insert_orders(data, table_name):
+    if not data:
+        return
+    data2=[]
+    conn=get_db_connection()
+    cur = conn.cursor()
+    for item in data:
+        dato=  json.dumps(item)
+        dato = json.loads(dato)
+         
+        dato=  json.dumps(dato["json_data"])
+        dato = json.loads(dato)
+        
+        dato=ast.literal_eval(dato)
+        
+        for pago in dato["payments"]:
+            try:
+                order_id=pago["order_id"]
+                cur.execute("select * from orders where json_data like '%{}%'".format(order_id))
+                if len(cur.fetchall()) >0:
+                    pass
+                else:
+                    data2.append(item)
+            except:
+                pass
+       
+    # Extraer columnas de los diccionarios
+    try:
+        columns = data2[0].keys()
+        columns_str = ', '.join(columns)
+        values_str = ', '.join(['%s'] * len(columns))
+
+        insert_query = sql.SQL(
+            f"INSERT INTO {table_name} ({columns_str}) VALUES ({values_str})"
+        )
+        
+        # Preparar los valores
+        values = [[record[col] for col in columns] for record in data2]
+        
+        # Ejecutar la consulta de inserción
+        cur.executemany(insert_query.as_string(conn), values)
+        
+        
+       
+
+    
+        conn.commit()
+        
+        cur.execute("""  DELETE FROM
+                orders a
+                    USING orders b
+            WHERE
+                a.id < b.id
+                AND a.json_data = b.json_data;""")
+        conn.commit() 
+                
+        cur.close()
+        conn.close()
+    except IndexError:
+        cur.close()
+        conn.close()
+        return {}
+    return data2
+    
 def creaToken(codigo):
     #codigo=get_code()
  
@@ -165,6 +313,29 @@ def creaToken(codigo):
     session['token']=ast.literal_eval(str(token))
     
     #crea_json('token_{}.json'.format(token["user_id"]),token)
+    conn=get_db_connection()
+    cur = conn.cursor()
+    cur.execute('INSERT INTO tokens (user_id, json_data)'
+            'VALUES (%s, %s)',
+            (token["user_id"],
+                '{}'.format(token))
+            )
+
+    conn.commit()
+
+    cur.close()
+    conn.close()
+
+    return True
+
+
+def creaRefreshToken(user_id=None):
+    #codigo=get_code()
+    token=get_last_token(user_id)
+    token=client.refresh_token(token)
+    session['token']=ast.literal_eval(str(token))
+    
+ 
     conn=get_db_connection()
     cur = conn.cursor()
     cur.execute('INSERT INTO tokens (user_id, json_data)'
