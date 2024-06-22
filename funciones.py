@@ -22,6 +22,8 @@ from psycopg2.extras import execute_values
 from psycopg2.extensions import register_adapter, AsIs
 import json
 from psycopg2 import sql
+from datetime import datetime, timezone
+
 
 def adapt_dict(dict_var):
     return AsIs("'" + json.dumps(dict_var) + "'")
@@ -206,7 +208,7 @@ def get_last_token(userid):
     return json_data
     
     
-    return resultado
+ 
     
 def refreshToken():
     
@@ -311,7 +313,7 @@ def creaToken(codigo):
  
     token = client.exchange_code(re_url, codigo)
     print(token)
-    
+    print("creATOKEN")
     session['token']=ast.literal_eval(str(token))
     
     #crea_json('token_{}.json'.format(token["user_id"]),token)
@@ -337,15 +339,24 @@ def creaRefreshToken(user_id=None):
     token=get_last_token(user_id)
     token=client.refresh_token(token)
     #session['token']=ast.literal_eval(str(token))
-        
+    print("va PRINT")    
      
     conn=get_db_connection()
     cur = conn.cursor()
-    cur.execute('INSERT INTO tokens (user_id, json_data)'
-            'VALUES (%s, %s)',
-            (token["user_id"],
-                '{}'.format(token))
-            )
+    dt = datetime.now(timezone.utc) 
+
+    print
+    ("""
+            UPDATE tokens
+            SET json_data=%s, created=%s
+            WHERE user_id=%s
+            """, (str(token),str(dt),str(token["user_id"])))
+            
+    cur.execute("""
+            UPDATE tokens
+            SET json_data=%s, created=%s
+            WHERE user_id=%s
+            """, (str(token),str(dt),str(token["user_id"])))
 
     conn.commit()
 
@@ -353,6 +364,8 @@ def creaRefreshToken(user_id=None):
     conn.close()
 
     return True
+
+
 if __name__ == "__main__":
     #user_id=creaToken()
 

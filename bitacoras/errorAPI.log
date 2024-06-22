@@ -1,0 +1,324 @@
+[2024-06-14 00:37:57 +0000] [24603] [INFO] Starting gunicorn 22.0.0
+[2024-06-14 00:37:57 +0000] [24603] [ERROR] Connection in use: ('0.0.0.0', 8080)
+[2024-06-14 00:37:57 +0000] [24603] [ERROR] Retrying in 1 second.
+[2024-06-14 00:37:58 +0000] [24603] [ERROR] Connection in use: ('0.0.0.0', 8080)
+[2024-06-14 00:37:58 +0000] [24603] [ERROR] Retrying in 1 second.
+[2024-06-14 00:37:59 +0000] [24603] [ERROR] Connection in use: ('0.0.0.0', 8080)
+[2024-06-14 00:37:59 +0000] [24603] [ERROR] Retrying in 1 second.
+[2024-06-14 00:38:00 +0000] [24603] [ERROR] Connection in use: ('0.0.0.0', 8080)
+[2024-06-14 00:38:00 +0000] [24603] [ERROR] Retrying in 1 second.
+[2024-06-14 00:38:01 +0000] [24603] [ERROR] Connection in use: ('0.0.0.0', 8080)
+[2024-06-14 00:38:01 +0000] [24603] [ERROR] Retrying in 1 second.
+[2024-06-14 00:38:02 +0000] [24603] [ERROR] Can't connect to ('0.0.0.0', 8080)
+[2024-06-14 00:40:19 +0000] [26197] [INFO] Starting gunicorn 22.0.0
+[2024-06-14 00:40:19 +0000] [26197] [ERROR] Connection in use: ('0.0.0.0', 8080)
+[2024-06-14 00:40:19 +0000] [26197] [ERROR] Retrying in 1 second.
+[2024-06-14 00:40:20 +0000] [26197] [ERROR] Connection in use: ('0.0.0.0', 8080)
+[2024-06-14 00:40:20 +0000] [26197] [ERROR] Retrying in 1 second.
+[2024-06-14 00:40:21 +0000] [26197] [ERROR] Connection in use: ('0.0.0.0', 8080)
+[2024-06-14 00:40:21 +0000] [26197] [ERROR] Retrying in 1 second.
+[2024-06-14 00:40:22 +0000] [26197] [ERROR] Connection in use: ('0.0.0.0', 8080)
+[2024-06-14 00:40:22 +0000] [26197] [ERROR] Retrying in 1 second.
+[2024-06-14 00:40:23 +0000] [26197] [ERROR] Connection in use: ('0.0.0.0', 8080)
+[2024-06-14 00:40:23 +0000] [26197] [ERROR] Retrying in 1 second.
+[2024-06-14 00:40:24 +0000] [26197] [ERROR] Can't connect to ('0.0.0.0', 8080)
+[2024-06-14 00:42:55 +0000] [27449] [INFO] Starting gunicorn 22.0.0
+[2024-06-14 00:42:55 +0000] [27449] [INFO] Listening at: http://0.0.0.0:9000 (27449)
+[2024-06-14 00:42:55 +0000] [27449] [INFO] Using worker: sync
+[2024-06-14 00:42:55 +0000] [27478] [INFO] Booting worker with pid: 27478
+[2024-06-14 00:44:38 +0000] [27449] [CRITICAL] WORKER TIMEOUT (pid:27478)
+[2024-06-14 00:44:38 +0000] [27478] [ERROR] Error handling request (no URI read)
+Traceback (most recent call last):
+  File "/home/ubuntu/meli/myprojectenv/lib/python3.12/site-packages/gunicorn/workers/sync.py", line 134, in handle
+    req = next(parser)
+          ^^^^^^^^^^^^
+  File "/home/ubuntu/meli/myprojectenv/lib/python3.12/site-packages/gunicorn/http/parser.py", line 42, in __next__
+    self.mesg = self.mesg_class(self.cfg, self.unreader, self.source_addr, self.req_count)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/meli/myprojectenv/lib/python3.12/site-packages/gunicorn/http/message.py", line 257, in __init__
+    super().__init__(cfg, unreader, peer_addr)
+  File "/home/ubuntu/meli/myprojectenv/lib/python3.12/site-packages/gunicorn/http/message.py", line 60, in __init__
+    unused = self.parse(self.unreader)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/meli/myprojectenv/lib/python3.12/site-packages/gunicorn/http/message.py", line 272, in parse
+    line, rbuf = self.read_line(unreader, buf, self.limit_request_line)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/meli/myprojectenv/lib/python3.12/site-packages/gunicorn/http/message.py", line 324, in read_line
+    self.get_data(unreader, buf)
+  File "/home/ubuntu/meli/myprojectenv/lib/python3.12/site-packages/gunicorn/http/message.py", line 260, in get_data
+    data = unreader.read()
+           ^^^^^^^^^^^^^^^
+  File "/home/ubuntu/meli/myprojectenv/lib/python3.12/site-packages/gunicorn/http/unreader.py", line 37, in read
+    d = self.chunk()
+        ^^^^^^^^^^^^
+  File "/home/ubuntu/meli/myprojectenv/lib/python3.12/site-packages/gunicorn/http/unreader.py", line 64, in chunk
+    return self.sock.recv(self.mxchunk)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/meli/myprojectenv/lib/python3.12/site-packages/gunicorn/workers/base.py", line 203, in handle_abort
+    sys.exit(1)
+SystemExit: 1
+[2024-06-14 00:44:38 +0000] [27478] [INFO] Worker exiting (pid: 27478)
+[2024-06-14 00:44:38 +0000] [27677] [INFO] Booting worker with pid: 27677
+[2024-06-14 00:49:17 +0000] [27449] [CRITICAL] WORKER TIMEOUT (pid:27677)
+[2024-06-14 00:49:17 +0000] [27677] [ERROR] Error handling request (no URI read)
+Traceback (most recent call last):
+  File "/home/ubuntu/meli/myprojectenv/lib/python3.12/site-packages/gunicorn/workers/sync.py", line 134, in handle
+    req = next(parser)
+          ^^^^^^^^^^^^
+  File "/home/ubuntu/meli/myprojectenv/lib/python3.12/site-packages/gunicorn/http/parser.py", line 42, in __next__
+    self.mesg = self.mesg_class(self.cfg, self.unreader, self.source_addr, self.req_count)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/meli/myprojectenv/lib/python3.12/site-packages/gunicorn/http/message.py", line 257, in __init__
+    super().__init__(cfg, unreader, peer_addr)
+  File "/home/ubuntu/meli/myprojectenv/lib/python3.12/site-packages/gunicorn/http/message.py", line 60, in __init__
+    unused = self.parse(self.unreader)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/meli/myprojectenv/lib/python3.12/site-packages/gunicorn/http/message.py", line 272, in parse
+    line, rbuf = self.read_line(unreader, buf, self.limit_request_line)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/meli/myprojectenv/lib/python3.12/site-packages/gunicorn/http/message.py", line 324, in read_line
+    self.get_data(unreader, buf)
+  File "/home/ubuntu/meli/myprojectenv/lib/python3.12/site-packages/gunicorn/http/message.py", line 260, in get_data
+    data = unreader.read()
+           ^^^^^^^^^^^^^^^
+  File "/home/ubuntu/meli/myprojectenv/lib/python3.12/site-packages/gunicorn/http/unreader.py", line 37, in read
+    d = self.chunk()
+        ^^^^^^^^^^^^
+  File "/home/ubuntu/meli/myprojectenv/lib/python3.12/site-packages/gunicorn/http/unreader.py", line 64, in chunk
+    return self.sock.recv(self.mxchunk)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/meli/myprojectenv/lib/python3.12/site-packages/gunicorn/workers/base.py", line 203, in handle_abort
+    sys.exit(1)
+SystemExit: 1
+[2024-06-14 00:49:17 +0000] [27677] [INFO] Worker exiting (pid: 27677)
+[2024-06-14 00:49:17 +0000] [28006] [INFO] Booting worker with pid: 28006
+[2024-06-14 00:51:22 +0000] [27449] [INFO] Handling signal: term
+[2024-06-14 00:51:33 +0000] [28006] [INFO] Worker exiting (pid: 28006)
+[2024-06-14 00:51:33 +0000] [27449] [INFO] Shutting down: Master
+[2024-06-14 01:00:43 +0000] [31149] [INFO] Starting gunicorn 22.0.0
+[2024-06-14 01:00:43 +0000] [31149] [INFO] Listening at: http://0.0.0.0:9000 (31149)
+[2024-06-14 01:00:43 +0000] [31149] [INFO] Using worker: sync
+[2024-06-14 01:00:43 +0000] [31179] [INFO] Booting worker with pid: 31179
+[2024-06-14 01:00:48 +0000] [31179] [ERROR] Error handling request /
+Traceback (most recent call last):
+  File "/home/ubuntu/meli/myprojectenv/lib/python3.12/site-packages/gunicorn/workers/sync.py", line 135, in handle
+    self.handle_request(listener, req, client, addr)
+  File "/home/ubuntu/meli/myprojectenv/lib/python3.12/site-packages/gunicorn/workers/sync.py", line 178, in handle_request
+    respiter = self.wsgi(environ, resp.start_response)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: FastAPI.__call__() missing 1 required positional argument: 'send'
+[2024-06-14 01:07:39 +0000] [31149] [INFO] Handling signal: term
+[2024-06-14 01:07:39 +0000] [31179] [INFO] Worker exiting (pid: 31179)
+[2024-06-14 01:07:39 +0000] [31149] [INFO] Shutting down: Master
+[2024-06-14 01:07:44 +0000] [32664] [INFO] Starting gunicorn 22.0.0
+[2024-06-14 01:07:44 +0000] [32664] [INFO] Listening at: http://0.0.0.0:9000 (32664)
+[2024-06-14 01:07:44 +0000] [32664] [INFO] Using worker: sync
+[2024-06-14 01:07:44 +0000] [32693] [INFO] Booting worker with pid: 32693
+[2024-06-14 01:08:28 +0000] [32693] [ERROR] Error handling request /docs
+Traceback (most recent call last):
+  File "/home/ubuntu/meli/myprojectenv/lib/python3.12/site-packages/gunicorn/workers/sync.py", line 135, in handle
+    self.handle_request(listener, req, client, addr)
+  File "/home/ubuntu/meli/myprojectenv/lib/python3.12/site-packages/gunicorn/workers/sync.py", line 178, in handle_request
+    respiter = self.wsgi(environ, resp.start_response)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: FastAPI.__call__() missing 1 required positional argument: 'send'
+[2024-06-14 01:08:50 +0000] [32664] [INFO] Handling signal: term
+[2024-06-14 01:08:50 +0000] [32693] [INFO] Worker exiting (pid: 32693)
+[2024-06-14 01:08:50 +0000] [32664] [INFO] Shutting down: Master
+[2024-06-14 01:26:44 +0000] [37711] [INFO] Starting gunicorn 22.0.0
+[2024-06-14 01:26:44 +0000] [37711] [INFO] Listening at: http://0.0.0.0:9000 (37711)
+[2024-06-14 01:26:44 +0000] [37711] [INFO] Using worker: sync
+[2024-06-14 01:26:44 +0000] [37744] [INFO] Booting worker with pid: 37744
+[2024-06-14 01:26:48 +0000] [37744] [ERROR] Error handling request /
+Traceback (most recent call last):
+  File "/home/ubuntu/meli/myprojectenv/lib/python3.12/site-packages/gunicorn/workers/sync.py", line 135, in handle
+    self.handle_request(listener, req, client, addr)
+  File "/home/ubuntu/meli/myprojectenv/lib/python3.12/site-packages/gunicorn/workers/sync.py", line 178, in handle_request
+    respiter = self.wsgi(environ, resp.start_response)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: FastAPI.__call__() missing 1 required positional argument: 'send'
+[2024-06-14 01:44:45 +0000] [42775] [INFO] Starting gunicorn 22.0.0
+[2024-06-14 01:44:45 +0000] [42775] [INFO] Listening at: http://0.0.0.0:9000 (42775)
+[2024-06-14 01:44:45 +0000] [42775] [INFO] Using worker: sync
+[2024-06-14 01:44:45 +0000] [42826] [INFO] Booting worker with pid: 42826
+[2024-06-14 01:51:38 +0000] [42775] [INFO] Handling signal: term
+[2024-06-14 01:51:38 +0000] [42826] [INFO] Worker exiting (pid: 42826)
+[2024-06-14 01:51:39 +0000] [42775] [INFO] Shutting down: Master
+[2024-06-14 05:15:21 +0000] [62250] [INFO] Starting gunicorn 22.0.0
+[2024-06-14 05:15:21 +0000] [62250] [INFO] Listening at: http://0.0.0.0:9000 (62250)
+[2024-06-14 05:15:21 +0000] [62250] [INFO] Using worker: sync
+[2024-06-14 05:15:21 +0000] [62279] [INFO] Booting worker with pid: 62279
+[2024-06-14 05:15:28 +0000] [62279] [ERROR] Error handling request /api/docs
+Traceback (most recent call last):
+  File "/home/ubuntu/meli/myprojectenv/lib/python3.12/site-packages/gunicorn/workers/sync.py", line 135, in handle
+    self.handle_request(listener, req, client, addr)
+  File "/home/ubuntu/meli/myprojectenv/lib/python3.12/site-packages/gunicorn/workers/sync.py", line 178, in handle_request
+    respiter = self.wsgi(environ, resp.start_response)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: FastAPI.__call__() missing 1 required positional argument: 'send'
+[2024-06-14 05:16:04 +0000] [62250] [INFO] Handling signal: term
+[2024-06-14 05:16:04 +0000] [62279] [INFO] Worker exiting (pid: 62279)
+[2024-06-14 05:16:04 +0000] [62250] [INFO] Shutting down: Master
+[2024-06-14 05:17:58 +0000] [62767] [INFO] Starting gunicorn 22.0.0
+[2024-06-14 05:17:58 +0000] [62767] [INFO] Listening at: http://0.0.0.0:9000 (62767)
+[2024-06-14 05:17:58 +0000] [62767] [INFO] Using worker: uvicorn.workers.UvicornWorker
+[2024-06-14 05:17:58 +0000] [62916] [INFO] Booting worker with pid: 62916
+[2024-06-14 05:17:58 +0000] [62917] [INFO] Booting worker with pid: 62917
+[2024-06-14 05:17:58 +0000] [62918] [INFO] Booting worker with pid: 62918
+[2024-06-14 05:17:58 +0000] [62919] [INFO] Booting worker with pid: 62919
+[2024-06-14 05:18:02 +0000] [62916] [INFO] Started server process [62916]
+[2024-06-14 05:18:02 +0000] [62916] [INFO] Waiting for application startup.
+[2024-06-14 05:18:02 +0000] [62916] [INFO] Application startup complete.
+[2024-06-14 05:18:02 +0000] [62918] [INFO] Started server process [62918]
+[2024-06-14 05:18:02 +0000] [62918] [INFO] Waiting for application startup.
+[2024-06-14 05:18:02 +0000] [62918] [INFO] Application startup complete.
+[2024-06-14 05:18:02 +0000] [62919] [INFO] Started server process [62919]
+[2024-06-14 05:18:02 +0000] [62919] [INFO] Waiting for application startup.
+[2024-06-14 05:18:02 +0000] [62919] [INFO] Application startup complete.
+[2024-06-14 05:18:02 +0000] [62917] [INFO] Started server process [62917]
+[2024-06-14 05:18:02 +0000] [62917] [INFO] Waiting for application startup.
+[2024-06-14 05:18:02 +0000] [62917] [INFO] Application startup complete.
+[2024-06-14 06:14:16 +0000] [62917] [WARNING] Invalid HTTP request received.
+[2024-06-14 06:14:25 +0000] [62917] [WARNING] Invalid HTTP request received.
+[2024-06-14 07:58:40 +0000] [62919] [WARNING] Invalid HTTP request received.
+[2024-06-14 08:59:45 +0000] [62917] [WARNING] Invalid HTTP request received.
+[2024-06-14 08:59:46 +0000] [62917] [WARNING] Invalid HTTP request received.
+[2024-06-14 09:03:14 +0000] [62916] [WARNING] Invalid HTTP request received.
+[2024-06-14 10:04:35 +0000] [62917] [WARNING] Invalid HTTP request received.
+[2024-06-14 13:18:23 +0000] [62917] [WARNING] Invalid HTTP request received.
+[2024-06-14 13:18:32 +0000] [62917] [WARNING] Invalid HTTP request received.
+[2024-06-14 14:34:41 +0000] [62917] [WARNING] Invalid HTTP request received.
+[2024-06-14 18:07:11 +0000] [62919] [WARNING] Invalid HTTP request received.
+[2024-06-14 18:07:19 +0000] [62919] [WARNING] Invalid HTTP request received.
+[2024-06-14 22:32:43 +0000] [62767] [CRITICAL] WORKER TIMEOUT (pid:62916)
+[2024-06-14 22:32:52 +0000] [62767] [CRITICAL] WORKER TIMEOUT (pid:62917)
+[2024-06-14 22:32:53 +0000] [62767] [CRITICAL] WORKER TIMEOUT (pid:62918)
+[2024-06-14 22:32:53 +0000] [62767] [CRITICAL] WORKER TIMEOUT (pid:62919)
+[2024-06-14 22:32:55 +0000] [62767] [ERROR] Worker (pid:62916) was sent SIGKILL! Perhaps out of memory?
+[2024-06-14 22:32:56 +0000] [62767] [ERROR] Worker (pid:62919) was sent SIGKILL! Perhaps out of memory?
+[2024-06-14 22:32:56 +0000] [62767] [ERROR] Worker (pid:62918) was sent SIGKILL! Perhaps out of memory?
+[2024-06-14 22:32:56 +0000] [73846] [INFO] Booting worker with pid: 73846
+[2024-06-14 22:32:56 +0000] [73847] [INFO] Booting worker with pid: 73847
+[2024-06-14 22:32:56 +0000] [73848] [INFO] Booting worker with pid: 73848
+[2024-06-14 22:32:57 +0000] [62767] [ERROR] Worker (pid:62917) was sent SIGKILL! Perhaps out of memory?
+[2024-06-14 22:32:57 +0000] [73858] [INFO] Booting worker with pid: 73858
+[2024-06-14 22:34:38 +0000] [73846] [INFO] Started server process [73846]
+[2024-06-14 22:34:38 +0000] [73846] [INFO] Waiting for application startup.
+[2024-06-14 22:34:38 +0000] [73847] [INFO] Started server process [73847]
+[2024-06-14 22:34:38 +0000] [73847] [INFO] Waiting for application startup.
+[2024-06-14 22:34:38 +0000] [73847] [INFO] Application startup complete.
+[2024-06-14 22:34:38 +0000] [73846] [INFO] Application startup complete.
+[2024-06-14 22:34:38 +0000] [73858] [INFO] Started server process [73858]
+[2024-06-14 22:34:38 +0000] [73858] [INFO] Waiting for application startup.
+[2024-06-14 22:34:38 +0000] [73858] [INFO] Application startup complete.
+[2024-06-14 22:34:38 +0000] [73848] [INFO] Started server process [73848]
+[2024-06-14 22:34:38 +0000] [73848] [INFO] Waiting for application startup.
+[2024-06-14 22:34:38 +0000] [73848] [INFO] Application startup complete.
+[2024-06-15 01:45:47 +0000] [73847] [WARNING] Invalid HTTP request received.
+[2024-06-15 01:45:47 +0000] [73847] [WARNING] Invalid HTTP request received.
+[2024-06-15 04:24:19 +0000] [73847] [WARNING] Invalid HTTP request received.
+[2024-06-15 04:24:19 +0000] [73848] [WARNING] Invalid HTTP request received.
+[2024-06-15 07:58:49 +0000] [73847] [WARNING] Invalid HTTP request received.
+[2024-06-15 08:07:05 +0000] [73847] [WARNING] Invalid HTTP request received.
+[2024-06-15 09:33:48 +0000] [73847] [WARNING] Invalid HTTP request received.
+[2024-06-15 11:31:57 +0000] [73847] [WARNING] Invalid HTTP request received.
+[2024-06-15 11:32:07 +0000] [73847] [WARNING] Invalid HTTP request received.
+[2024-06-15 15:22:24 +0000] [73847] [WARNING] Invalid HTTP request received.
+[2024-06-15 15:22:35 +0000] [73847] [WARNING] Invalid HTTP request received.
+[2024-06-15 15:42:48 +0000] [73847] [WARNING] Invalid HTTP request received.
+[2024-06-15 15:42:56 +0000] [73848] [WARNING] Invalid HTTP request received.
+[2024-06-15 20:02:15 +0000] [73847] [WARNING] Invalid HTTP request received.
+[2024-06-15 23:07:10 +0000] [73847] [WARNING] Invalid HTTP request received.
+[2024-06-15 23:49:53 +0000] [73847] [WARNING] Invalid HTTP request received.
+[2024-06-15 23:50:01 +0000] [73858] [WARNING] Invalid HTTP request received.
+[2024-06-16 01:22:01 +0000] [73848] [ERROR] Exception in ASGI application
+Traceback (most recent call last):
+  File "/home/ubuntu/meli/myprojectenv/lib/python3.12/site-packages/uvicorn/protocols/http/httptools_impl.py", line 399, in run_asgi
+    result = await app(  # type: ignore[func-returns-value]
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/meli/myprojectenv/lib/python3.12/site-packages/uvicorn/middleware/proxy_headers.py", line 70, in __call__
+    return await self.app(scope, receive, send)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/meli/myprojectenv/lib/python3.12/site-packages/fastapi/applications.py", line 1054, in __call__
+    await super().__call__(scope, receive, send)
+  File "/home/ubuntu/meli/myprojectenv/lib/python3.12/site-packages/starlette/applications.py", line 123, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/home/ubuntu/meli/myprojectenv/lib/python3.12/site-packages/starlette/middleware/errors.py", line 186, in __call__
+    raise exc
+  File "/home/ubuntu/meli/myprojectenv/lib/python3.12/site-packages/starlette/middleware/errors.py", line 164, in __call__
+    await self.app(scope, receive, _send)
+  File "/home/ubuntu/meli/myprojectenv/lib/python3.12/site-packages/starlette/middleware/exceptions.py", line 65, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "/home/ubuntu/meli/myprojectenv/lib/python3.12/site-packages/starlette/_exception_handler.py", line 64, in wrapped_app
+    raise exc
+  File "/home/ubuntu/meli/myprojectenv/lib/python3.12/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    await app(scope, receive, sender)
+  File "/home/ubuntu/meli/myprojectenv/lib/python3.12/site-packages/starlette/routing.py", line 756, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/home/ubuntu/meli/myprojectenv/lib/python3.12/site-packages/starlette/routing.py", line 776, in app
+    await route.handle(scope, receive, send)
+  File "/home/ubuntu/meli/myprojectenv/lib/python3.12/site-packages/starlette/routing.py", line 297, in handle
+    await self.app(scope, receive, send)
+  File "/home/ubuntu/meli/myprojectenv/lib/python3.12/site-packages/starlette/routing.py", line 77, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "/home/ubuntu/meli/myprojectenv/lib/python3.12/site-packages/starlette/_exception_handler.py", line 64, in wrapped_app
+    raise exc
+  File "/home/ubuntu/meli/myprojectenv/lib/python3.12/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    await app(scope, receive, sender)
+  File "/home/ubuntu/meli/myprojectenv/lib/python3.12/site-packages/starlette/routing.py", line 72, in app
+    response = await func(request)
+               ^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/meli/myprojectenv/lib/python3.12/site-packages/fastapi/routing.py", line 278, in app
+    raw_response = await run_endpoint_function(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/meli/myprojectenv/lib/python3.12/site-packages/fastapi/routing.py", line 191, in run_endpoint_function
+    return await dependant.call(**values)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/meli/api.py", line 145, in login_for_access_token
+    print(user[4])
+          ~~~~^^^
+TypeError: 'bool' object is not subscriptable
+[2024-06-16 02:02:40 +0000] [73847] [WARNING] Invalid HTTP request received.
+[2024-06-16 07:25:20 +0000] [73847] [WARNING] Invalid HTTP request received.
+[2024-06-16 08:12:41 +0000] [73847] [WARNING] Invalid HTTP request received.
+[2024-06-16 08:12:41 +0000] [73847] [WARNING] Invalid HTTP request received.
+[2024-06-16 08:12:42 +0000] [73847] [WARNING] Invalid HTTP request received.
+[2024-06-16 09:44:13 +0000] [73847] [WARNING] Invalid HTTP request received.
+[2024-06-16 10:16:19 +0000] [73847] [WARNING] Invalid HTTP request received.
+[2024-06-16 10:16:20 +0000] [73847] [WARNING] Invalid HTTP request received.
+[2024-06-16 10:16:20 +0000] [73847] [WARNING] Invalid HTTP request received.
+[2024-06-16 10:16:20 +0000] [73847] [WARNING] Invalid HTTP request received.
+[2024-06-16 10:16:21 +0000] [73847] [WARNING] Invalid HTTP request received.
+[2024-06-16 10:16:21 +0000] [73847] [WARNING] Invalid HTTP request received.
+[2024-06-16 10:16:21 +0000] [73847] [WARNING] Invalid HTTP request received.
+[2024-06-16 10:16:21 +0000] [73847] [WARNING] Invalid HTTP request received.
+[2024-06-16 10:16:22 +0000] [73847] [WARNING] Invalid HTTP request received.
+[2024-06-16 12:18:27 +0000] [73847] [WARNING] Invalid HTTP request received.
+[2024-06-16 17:22:11 +0000] [73847] [WARNING] Invalid HTTP request received.
+[2024-06-16 17:22:11 +0000] [73847] [WARNING] Invalid HTTP request received.
+[2024-06-16 17:24:04 +0000] [62767] [INFO] Handling signal: term
+[2024-06-16 17:24:04 +0000] [73847] [INFO] Shutting down
+[2024-06-16 17:24:04 +0000] [73847] [INFO] Error while closing socket [Errno 9] Bad file descriptor
+[2024-06-16 17:24:04 +0000] [73848] [INFO] Shutting down
+[2024-06-16 17:24:04 +0000] [73848] [INFO] Error while closing socket [Errno 9] Bad file descriptor
+[2024-06-16 17:24:04 +0000] [73846] [INFO] Shutting down
+[2024-06-16 17:24:04 +0000] [73846] [INFO] Error while closing socket [Errno 9] Bad file descriptor
+[2024-06-16 17:24:04 +0000] [73858] [INFO] Shutting down
+[2024-06-16 17:24:04 +0000] [73858] [INFO] Error while closing socket [Errno 9] Bad file descriptor
+[2024-06-16 17:24:05 +0000] [73847] [INFO] Waiting for application shutdown.
+[2024-06-16 17:24:05 +0000] [73847] [INFO] Application shutdown complete.
+[2024-06-16 17:24:05 +0000] [73847] [INFO] Finished server process [73847]
+[2024-06-16 17:24:05 +0000] [73848] [INFO] Waiting for application shutdown.
+[2024-06-16 17:24:05 +0000] [73848] [INFO] Application shutdown complete.
+[2024-06-16 17:24:05 +0000] [73848] [INFO] Finished server process [73848]
+[2024-06-16 17:24:05 +0000] [73846] [INFO] Waiting for application shutdown.
+[2024-06-16 17:24:05 +0000] [73846] [INFO] Application shutdown complete.
+[2024-06-16 17:24:05 +0000] [73846] [INFO] Finished server process [73846]
+[2024-06-16 17:24:05 +0000] [73858] [INFO] Waiting for application shutdown.
+[2024-06-16 17:24:05 +0000] [73858] [INFO] Application shutdown complete.
+[2024-06-16 17:24:05 +0000] [73858] [INFO] Finished server process [73858]
+[2024-06-16 17:24:05 +0000] [62767] [ERROR] Worker (pid:73848) was sent SIGTERM!
+[2024-06-16 17:24:05 +0000] [62767] [ERROR] Worker (pid:73847) was sent SIGTERM!
+[2024-06-16 17:24:05 +0000] [62767] [ERROR] Worker (pid:73858) was sent SIGTERM!
+[2024-06-16 17:24:05 +0000] [62767] [ERROR] Worker (pid:73846) was sent SIGTERM!
+[2024-06-16 17:24:05 +0000] [62767] [INFO] Shutting down: Master

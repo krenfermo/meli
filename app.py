@@ -54,7 +54,7 @@ scheduler.add_job(
    orders_updateJOB, 'interval',args=['1118811075'], minutes=30
 )
 scheduler.add_job(
-   creaRefreshToken, 'interval',args=['1118811075'], minutes=60
+   creaRefreshToken, 'interval',args=['1118811075'], minutes=1
 )
 
 
