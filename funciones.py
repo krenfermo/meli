@@ -188,6 +188,27 @@ def get_orders_users(token):
     insert_orders(resultados,'orders')    
     return resultados
 
+
+
+
+def get_usersML():
+    conn=get_db_connection()
+    cur = conn.cursor()
+    cur.execute("SELECT user_id FROM public.tokens")
+     
+    usuario=cur.fetchall()
+    cur.close()
+    conn.close()
+    resultado=[]
+    for i in usuario:
+        #print(i)
+        resultado.append(i)
+    
+    json_data = ast.literal_eval(json.dumps(resultado, indent=4, sort_keys=True, default=str))
+     
+    return json_data
+
+
 def get_last_token(userid):
     
     conn=get_db_connection()
@@ -333,42 +354,48 @@ def creaToken(codigo):
     return True
 
 
-def creaRefreshToken(user_id=None):
+def creaRefreshToken():
     #codigo=get_code()
     print("VA A creaRefreshToken")
-    token=get_last_token(user_id)
-    token=client.refresh_token(token)
-    #session['token']=ast.literal_eval(str(token))
-    print("va PRINT")    
-     
-    conn=get_db_connection()
-    cur = conn.cursor()
-    dt = datetime.now(timezone.utc) 
+    for user in get_usersML():
+        print(user[0])
+        
+        token=get_last_token(user[0])
+        token=client.refresh_token(token)
+        #session['token']=ast.literal_eval(str(token))
+        print("va PRINT")    
+        
+        conn=get_db_connection()
+        cur = conn.cursor()
+        dt = datetime.now(timezone.utc) 
 
-    print
-    ("""
-            UPDATE tokens
-            SET json_data=%s, created=%s
-            WHERE user_id=%s
-            """, (str(token),str(dt),str(token["user_id"])))
-            
-    cur.execute("""
-            UPDATE tokens
-            SET json_data=%s, created=%s
-            WHERE user_id=%s
-            """, (str(token),str(dt),str(token["user_id"])))
+        print
+        ("""
+                UPDATE tokens
+                SET json_data=%s, created=%s
+                WHERE user_id=%s
+                """, (str(token),str(dt),str(token["user_id"])))
+                
+        cur.execute("""
+                UPDATE tokens
+                SET json_data=%s, created=%s
+                WHERE user_id=%s
+                """, (str(token),str(dt),str(token["user_id"])))
 
-    conn.commit()
+        conn.commit()
 
-    cur.close()
-    conn.close()
+        cur.close()
+        conn.close()
 
     return True
 
 
 if __name__ == "__main__":
     #user_id=creaToken()
-
+    
+    
+    
+    exit()
     user_id="40137874"
     token=lee_json('token_{}.json'.format(user_id))
     print("token:",token)

@@ -17,3 +17,4 @@ __pycache__/run_ml.cpython-312.pyc
 __pycache__/init_db.cpython-312.pyc
 __pycache__/guniconf.cpython-312.pyc
 .env
+.env
