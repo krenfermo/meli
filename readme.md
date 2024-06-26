@@ -7,6 +7,9 @@ https://console.cloud.google.com/apis/
 
 https://blog.arlenx.io/posts/deploy-flask-application-on-aws-ec2-and-postgresql
 
+gunicorn -c guniconf.py  app:app -w 4 -k uvicorn.workers.UvicornWorker
+
 
 gunicorn -c guni_api.py  api:app -w 4 -k uvicorn.workers.UvicornWorker
+
 

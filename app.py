@@ -37,21 +37,35 @@ scheduler = BackgroundScheduler()
 
 CORS(app, support_credentials=True)
 
-
-def orders_updateJOB(user_id):
-    print("ACTUALIZANDO")
+def orders_userdef(user_id):
+     
+    print("DESCARGADNDO ORDERS",user_id)
     token=get_last_token(user_id)
-    #creaRefreshToken(token)
+    #creaRefreshToken('1118811075')
     #exit()
     
+    reaultado=get_orders_users(token)
+        
+    return {"message":"orders_fill"}
+
+def orders_updateJOB():
+    print("ACTUALIZANDO")
+    for user in get_usersML():
+        print(user[0])
+        
+        token=get_last_token(user[0])
+        
+        #creaRefreshToken(token)
+        #exit()
     
-    reaultado=update_orders_users(token)
+    
+        reaultado=update_orders_users(token)
     
  
  
     
 scheduler.add_job(
-   orders_updateJOB, 'interval',args=['1118811075'], minutes=30
+   orders_updateJOB, 'interval', minutes=30
 )
 scheduler.add_job(
    creaRefreshToken, 'interval', minutes=120
@@ -83,7 +97,8 @@ async def respond():
         print("token CREADO")
         print(token)
         session['user_id']=session['token']["access_token"].split('-')[-1]
-        
+    
+        orders_userdef(session['user_id'])
     return render_template('callback.html')
 
 
@@ -138,4 +153,4 @@ async def orders_update():
 
 
 if __name__ == "__main__":
-    app.run(debug=True,host="0.0.0.0", port=8000,ssl_context='adhoc')
+    app.run(debug=True,host="0.0.0.0", port=8000)
