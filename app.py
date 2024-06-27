@@ -8,7 +8,7 @@ import time
 from asgiref.sync import sync_to_async
 import asyncio
 from funciones import get_me,get_last_token,get_info_users,get_orders_users,update_orders_users,get_usersML
-import nest_asyncio
+#import nest_asyncio
 import json
 import ast
 from apscheduler.schedulers.background import BackgroundScheduler
@@ -17,7 +17,7 @@ import threading
 
 import uvicorn
 
-nest_asyncio.apply()
+#nest_asyncio.apply()
 
 
 dotenv_path = join(dirname(__file__), '.env')
@@ -45,7 +45,7 @@ def orders_userdef(user_id):
     #exit()
     
     reaultado=get_orders_users(token)
-        
+    print({"message":"orders_fill"})
     return {"message":"orders_fill"}
 
 def orders_updateJOB():
@@ -92,16 +92,24 @@ def index():
 async def respond():
     code = request.args.get("code")
     token=creaToken(code)
- 
+    print(" respuesta token",token)
+    session['user_id']=code.split('-')[-1]
     if token:
         print("token CREADO")
         print(token)
         session['user_id']=session['token']["access_token"].split('-')[-1]
     
         #orders_userdef(session['user_id'])
-        print("USUARIO: ", session['user_id'])
-        t = threading.Thread(target=orders_userdef(session['user_id']))
-        t.start()
+        
+    
+    
+    
+    print("USUARIO: ", session['user_id'])
+    t = threading.Thread(target=orders_userdef(session['user_id']))
+    t.start()
+    print("TERMINA")
+    #t.join()
+        
     return render_template('callback.html')
 
 
@@ -156,4 +164,7 @@ async def orders_update():
 
 
 if __name__ == "__main__":
-    app.run(debug=True,host="0.0.0.0", port=8000,ssl_context='adhoc')
+    #from a2wsgi import ASGIMiddleware
+    #wsgi_app = ASGIMiddleware(app)
+    uvicorn.run("app:app", host="0.0.0.0", port=8000)
+    #app.run(debug=True,host="0.0.0.0", port=8000,ssl_context='adhoc')

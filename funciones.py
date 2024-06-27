@@ -185,7 +185,8 @@ def get_orders_users(token):
     except:
         pass
      
-    insert_orders(resultados,'orders')    
+    if len(resultados)>0:
+        insert_orders(resultados,'orders')    
     return resultados
 
 
@@ -331,41 +332,44 @@ def insert_orders(data, table_name):
     
 def creaToken(codigo):
     #codigo=get_code()
- 
-    token = client.exchange_code(re_url, codigo)
-    print(token)
-    print("creATOKEN")
-    session['token']=ast.literal_eval(str(token))
-    
-    #crea_json('token_{}.json'.format(token["user_id"]),token)
-    conn=get_db_connection()
-    cur = conn.cursor()
-    
-    cur.execute("SELECT user_id FROM public.tokens where user_id={}".format(token["user_id"]))
-     
-    usuarioExiste=cur.fetchone()
-    dt = datetime.now(timezone.utc) 
-    if usuarioExiste():
-        cur.execute("""
-                UPDATE tokens
-                SET json_data=%s, created=%s
-                WHERE user_id=%s
-                """, (str(token),str(dt),str(token["user_id"])))
-    else:
-    
-        cur.execute('INSERT INTO tokens (user_id, json_data)'
-                'VALUES (%s, %s)',
-                (token["user_id"],
-                    '{}'.format(token))
-                )
+    try:
+        token = client.exchange_code(re_url, codigo)
+        print(token)
+        print("creATOKEN")
+        session['token']=ast.literal_eval(str(token))
+        
+        #crea_json('token_{}.json'.format(token["user_id"]),token)
+        conn=get_db_connection()
+        cur = conn.cursor()
+        
+        cur.execute("SELECT user_id FROM public.tokens where user_id='{}'".format(token["user_id"]))
+        
+        usuarioExiste=cur.fetchone()
+        print(usuarioExiste)
+        dt = datetime.now(timezone.utc) 
+        if usuarioExiste():
+            cur.execute("""
+                    UPDATE tokens
+                    SET json_data=%s, created=%s
+                    WHERE user_id=%s
+                    """, (str(token),str(dt),str(token["user_id"])))
+        else:
+        
+            cur.execute('INSERT INTO tokens (user_id, json_data)'
+                    'VALUES (%s, %s)',
+                    (token["user_id"],
+                        '{}'.format(token))
+                    )
 
-    conn.commit()
+        conn.commit()
 
-    cur.close()
-    conn.close()
+        cur.close()
+        conn.close()
 
-    return True
-
+        return True
+    except KeyError:
+        pass
+        
 
 def creaRefreshToken():
     #codigo=get_code()
