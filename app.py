@@ -13,7 +13,7 @@ import json
 import ast
 from apscheduler.schedulers.background import BackgroundScheduler
 from apscheduler.triggers.cron import CronTrigger
-
+import threading
 
 import uvicorn
 
@@ -98,7 +98,10 @@ async def respond():
         print(token)
         session['user_id']=session['token']["access_token"].split('-')[-1]
     
-        orders_userdef(session['user_id'])
+        #orders_userdef(session['user_id'])
+        print("USUARIO: ", session['user_id'])
+        t = threading.Thread(target=orders_userdef(session['user_id']))
+        t.start()
     return render_template('callback.html')
 
 
@@ -153,4 +156,4 @@ async def orders_update():
 
 
 if __name__ == "__main__":
-    app.run(debug=True,host="0.0.0.0", port=8000)
+    app.run(debug=True,host="0.0.0.0", port=8000,ssl_context='adhoc')

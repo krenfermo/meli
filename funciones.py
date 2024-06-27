@@ -340,11 +340,24 @@ def creaToken(codigo):
     #crea_json('token_{}.json'.format(token["user_id"]),token)
     conn=get_db_connection()
     cur = conn.cursor()
-    cur.execute('INSERT INTO tokens (user_id, json_data)'
-            'VALUES (%s, %s)',
-            (token["user_id"],
-                '{}'.format(token))
-            )
+    
+    cur.execute("SELECT user_id FROM public.tokens where user_id={}".format(token["user_id"]))
+     
+    usuarioExiste=cur.fetchone()
+    dt = datetime.now(timezone.utc) 
+    if usuarioExiste():
+        cur.execute("""
+                UPDATE tokens
+                SET json_data=%s, created=%s
+                WHERE user_id=%s
+                """, (str(token),str(dt),str(token["user_id"])))
+    else:
+    
+        cur.execute('INSERT INTO tokens (user_id, json_data)'
+                'VALUES (%s, %s)',
+                (token["user_id"],
+                    '{}'.format(token))
+                )
 
     conn.commit()
 
