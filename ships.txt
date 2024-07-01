@@ -1,0 +1,235 @@
+{
+    "substatus_history": [
+        {
+            "date": "2024-06-29T16:36:18.559-04:00",
+            "substatus": "shipment_paid",
+            "status": "pending"
+        },
+        {
+            "date": "2024-06-29T16:36:22.612-04:00",
+            "substatus": "ready_to_print",
+            "status": "ready_to_ship"
+        }
+    ],
+    "snapshot_packing": {
+        "snapshot_id": "27d4216e-13f3-4896-9706-c6dc1a45267a",
+        "pack_hash": "2"
+    },
+    "receiver_id": 657789822,
+    "base_cost": 190,
+    "status_history": {
+        "date_shipped": null,
+        "date_returned": null,
+        "date_delivered": null,
+        "date_first_visit": null,
+        "date_not_delivered": null,
+        "date_cancelled": null,
+        "date_handling": "2024-06-29T16:36:21.000-04:00",
+        "date_ready_to_ship": "2024-06-29T16:36:22.612-04:00"
+    },
+    "type": "forward",
+    "return_details": null,
+    "sender_id": 448630294,
+    "mode": "me2",
+    "order_cost": 358.8,
+    "priority_class": {
+        "id": "20"
+    },
+    "service_id": 158182,
+    "shipping_items": [
+        {
+            "quantity": 1,
+            "dimensions_source": {
+                "origin": "product_conciliation",
+                "id": "MLM1946974443__1"
+            },
+            "description": "Mi Lucha, De Kellerhoff, Sven Felix. Serie Bolsillo Paidós Editorial Booket Paidós México, Tapa Blanda En Español, 2018",
+            "id": "MLM1946974443",
+            "user_product_id": null,
+            "sender_id": 448630294,
+            "dimensions": "12.0x29.0x44.0,850.0"
+        }
+    ],
+    "tracking_number": "MEL43553161925FMXDF01",
+    "cost_components": {
+        "loyal_discount": 0,
+        "special_discount": 0,
+        "compensation": 0,
+        "gap_discount": 0,
+        "ratio": 193
+    },
+    "id": 43553161925,
+    "tracking_method": "MEL Distribution",
+    "last_updated": "2024-06-29T16:36:22.983-04:00",
+    "items_types": [
+        "new"
+    ],
+    "comments": null,
+    "substatus": "ready_to_print",
+    "date_created": "2024-06-29T16:36:15.314-04:00",
+    "date_first_printed": null,
+    "created_by": "receiver",
+    "application_id": null,
+    "shipping_option": {
+        "processing_time": null,
+        "cost": 0,
+        "estimated_schedule_limit": {
+            "date": null
+        },
+        "shipping_method_id": 509450,
+        "estimated_delivery_final": {
+            "date": "2024-07-02T00:00:00.000-06:00",
+            "offset": 720
+        },
+        "buffering": {
+            "date": null
+        },
+        "pickup_promise": {
+            "from": null,
+            "to": null
+        },
+        "list_cost": 95,
+        "estimated_delivery_limit": {
+            "date": "2024-07-02T00:00:00.000-06:00",
+            "offset": 192
+        },
+        "priority_class": {
+            "id": "20"
+        },
+        "delivery_promise": "estimated",
+        "delivery_type": "estimated",
+        "estimated_handling_limit": {
+            "date": "2024-06-29T00:00:00.000-06:00"
+        },
+        "estimated_delivery_time": {
+            "date": "2024-07-02T00:00:00.000-06:00",
+            "pay_before": "2024-06-30T00:00:00.000-06:00",
+            "schedule": null,
+            "unit": "hour",
+            "offset": {
+                "date": "2024-07-03T00:00:00.000-06:00",
+                "shipping": 24
+            },
+            "shipping": 72,
+            "time_frame": {
+                "from": null,
+                "to": null
+            },
+            "handling": 0,
+            "type": "known_frame"
+        },
+        "name": "Estándar a domicilio",
+        "id": 3706930463,
+        "estimated_delivery_extended": {
+            "date": "2024-07-02T00:00:00.000-06:00",
+            "offset": 192
+        },
+        "currency_id": "MXN"
+    },
+    "tags": [],
+    "sender_address": {
+        "country": {
+            "id": "MX",
+            "name": "Mexico"
+        },
+        "address_line": "XXXXXXX",
+        "types": [
+            "billing",
+            "default_return_address",
+            "default_selling_address",
+            "shipping"
+        ],
+        "scoring": 3.23,
+        "agency": null,
+        "city": {
+            "id": "TUxNQ0NVQTczMTI",
+            "name": "Cuauhtémoc"
+        },
+        "geolocation_type": "ROOFTOP",
+        "latitude": 0,
+        "municipality": {
+            "id": null,
+            "name": null
+        },
+        "location_id": null,
+        "street_name": "XXXXXXX",
+        "zip_code": "XXXXXXX",
+        "geolocation_source": "corrections-api",
+        "node": null,
+        "intersection": null,
+        "street_number": "XXXXXXX",
+        "comment": "XXXXXXX",
+        "id": 1137706256,
+        "state": {
+            "id": "MX-DIF",
+            "name": "Distrito Federal"
+        },
+        "neighborhood": {
+            "id": null,
+            "name": "Centro"
+        },
+        "geolocation_last_updated": "2024-03-23T20:30:20.286Z",
+        "longitude": 0
+    },
+    "sibling": {
+        "reason": null,
+        "sibling_id": null,
+        "description": null,
+        "source": null,
+        "date_created": null,
+        "last_updated": null
+    },
+    "return_tracking_number": null,
+    "site_id": "MLM",
+    "carrier_info": null,
+    "market_place": "MELI",
+    "receiver_address": {
+        "country": {
+            "id": "MX",
+            "name": "Mexico"
+        },
+        "city": {
+            "id": "TUxNQ0JFTjM2MjQ",
+            "name": "Benito juárez"
+        },
+        "geolocation_type": "ROOFTOP",
+        "latitude": 19.379828,
+        "municipality": {
+            "id": null,
+            "name": null
+        },
+        "location_id": null,
+        "street_name": "Lago poniente",
+        "zip_code": "03610",
+        "intersection": null,
+        "receiver_name": "Sebastián Rodríguez Torres",
+        "id": 1206058480,
+        "state": {
+            "id": "MX-DIF",
+            "name": "Distrito Federal"
+        },
+        "longitude": -99.142005,
+        "address_line": "Lago poniente 45",
+        "types": [
+            "default_buying_address"
+        ],
+        "scoring": 3.57,
+        "agency": null,
+        "geolocation_source": "google-maps",
+        "delivery_preference": "business",
+        "node": null,
+        "street_number": "45",
+        "comment": "Referencia: puertas de cristal, terminando el estacionamiento del Walmart. Entre: Rosa blanca y Cumbres de maltrata",
+        "neighborhood": {
+            "id": null,
+            "name": "Américas Unidas"
+        },
+        "geolocation_last_updated": "2024-05-20T04:22:01.471Z",
+        "receiver_phone": "XXXXXXX"
+    },
+    "customer_id": null,
+    "order_id": 2000008645097360,
+    "quotation": null,
+    "status": "ready_to_ship",
+    "logistic_type": "cross_docking"
+}
